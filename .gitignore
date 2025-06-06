@@ -39,3 +39,4 @@ build/
 /.idea/
 
 .idea
+src/main/java/cli/Class.java
