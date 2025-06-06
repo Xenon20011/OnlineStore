@@ -1,15 +1,22 @@
 package models;
 
-public class PromoCode_VIP50 implements PromoСode {
-  final double VIP50=50.0;
+public class PromoCode_VIP50 extends PromoСode {
+    double amountDiscount = 50.0;
+    String code = "VIP50";
 
-    @Override
-    public double getPromoCode() {
-        return VIP50;
+    public String getCode() {
+        return code;
     }
 
-    @Override
-    public void applyPromoСode() {
+    public double getAmountDiscount() {
+        return amountDiscount;
+    }
 
+    public boolean isValid() {
+        return true;
+    }
+
+    public boolean setValid(boolean used) {
+        return used;
     }
 }

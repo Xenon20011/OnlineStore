@@ -1,10 +1,9 @@
 package services;
 
-import models.Cart;
-import models.CartItem;
-import models.Product;
+import models.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class StoreService {
     private final List<Product> catalog;
@@ -34,6 +33,20 @@ public class StoreService {
 
     public void applyDiscount(double percent) {
         cart.setDiscount(percent);
+    }
+
+    public void applyPromoCode(Map<String, PromoСode> promoCodes, String code) {
+        if (code.isEmpty()) {
+            System.out.println("Введите промокод");
+            return;
+        }
+        PromoСode promo = promoCodes.get(code.toUpperCase());
+        if (!promoCodes.containsKey(code.toUpperCase()) || !promo.isValid()) {
+            System.out.println("Промокод не найден или уже использован");
+            return;
+        }
+        cart.setDiscount(promo.getAmountDiscount());
+        promo.setValid(false);
     }
 
     public void printCart() {

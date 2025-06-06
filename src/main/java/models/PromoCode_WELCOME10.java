@@ -1,15 +1,21 @@
 package models;
 
-public class PromoCode_WELCOME10 implements PromoСode {
-double WELCOME10=10.0;
-
-    @Override
-    public double getPromoCode() {
-        return WELCOME10;
+public class PromoCode_WELCOME10 extends PromoСode {
+    double amountDiscount = 10.0;
+    String code = "WELCOME10";
+    public String getCode() {
+        return code;
     }
 
-    @Override
-    public void applyPromoСode() {
+    public double getAmountDiscount() {
+        return amountDiscount;
+    }
 
+    public boolean isValid() {
+        return true;
+    }
+
+    public boolean setValid(boolean used) {
+        return used;
     }
 }

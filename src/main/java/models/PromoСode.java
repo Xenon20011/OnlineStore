@@ -1,7 +1,21 @@
 package models;
 
-public interface PromoСode {
+public class PromoСode {
+    double amountDiscount;
+    String code;
+    public String getCode() {
+        return code;
+    }
 
-    public double getPromoCode();
-    public void applyPromoСode();
+    public double getAmountDiscount() {
+        return amountDiscount;
+    }
+
+    public boolean isValid() {
+        return true;
+    }
+
+    public boolean setValid(boolean used) {
+        return used;
+    }
 }
