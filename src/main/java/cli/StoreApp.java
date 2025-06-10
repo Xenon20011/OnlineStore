@@ -2,8 +2,7 @@ package cli;
 
 import enums.Commands;
 import models.Product;
-import models.PromoCode_VIP50;
-import models.PromoCode_WELCOME10;
+import models.PromoCodes;
 import models.PromoСode;
 import services.StoreService;
 
@@ -17,8 +16,8 @@ public class StoreApp {
         catalog.add(new Product("Кружка", 300));
 
         Map<String, PromoСode> promoCodes = new HashMap<>();
-        promoCodes.put("WELCOME10", new PromoCode_WELCOME10());
-        promoCodes.put("VIP50", new PromoCode_VIP50());
+        promoCodes.put("WELCOME10", new PromoCodes("WELCOME10", 10.0));
+        promoCodes.put("VIP50", new PromoCodes("VIP50", 50.0));
 
         StoreService store = new StoreService(catalog);
         Scanner scanner = new Scanner(System.in);
@@ -43,20 +42,12 @@ public class StoreApp {
                         String name = scanner.nextLine();
                         System.out.print("Введите количество: ");
                         int quantity = Integer.parseInt(scanner.nextLine());
-                        if (quantity > 0) {
-                            store.addProductToCart(name, quantity);
-                        } else {
-                            System.out.println("Некорректное количество, попробуйте еще раз");
-                        }
+                        store.addProductToCart(name, quantity);
                     }
                     case Commands.DISCOUNT -> {
                         System.out.print("Введите процент скидки: ");
                         double percent = Double.parseDouble(scanner.nextLine());
-                        if (percent < 100) {
-                            store.applyDiscount(percent);
-                        } else {
-                            System.out.println("Недопустимый размер скидки");
-                        }
+                        store.applyDiscount(percent);
                     }
                     case Commands.PROMOCODE -> {
                         System.out.print("Введите промокод: ");

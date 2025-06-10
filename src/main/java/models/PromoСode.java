@@ -1,21 +1,12 @@
 package models;
 
-public class PromoСode {
-    double amountDiscount;
-    String code;
-    public String getCode() {
-        return code;
-    }
+public interface PromoСode {
+    String getCode();
 
-    public double getAmountDiscount() {
-        return amountDiscount;
-    }
+    double getDiscount();
 
-    public boolean isValid() {
-        return true;
-    }
+    boolean isValid();
 
-    public boolean setValid(boolean used) {
-        return used;
-    }
+    void markAsUsed();
 }
+

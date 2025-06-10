@@ -21,18 +21,26 @@ public class StoreService {
     }
 
     public void addProductToCart(String name, int quantity) {
-        for (Product p : catalog) {
-            if (p.name().equalsIgnoreCase(name)) {
-                cart.addItem(p, quantity);
-                System.out.println("Добавлено: " + name + " x" + quantity);
-                return;
+        if (quantity > 0) {
+            for (Product p : catalog) {
+                if (p.name().equalsIgnoreCase(name)) {
+                    cart.addItem(p, quantity);
+                    System.out.println("Добавлено: " + name + " x" + quantity);
+                    return;
+                }
             }
+            System.out.println("Товар не найден: " + name);
+        } else {
+            System.out.println("Некорректное количество, попробуйте еще раз");
         }
-        System.out.println("Товар не найден: " + name);
     }
 
     public void applyDiscount(double percent) {
-        cart.setDiscount(percent);
+        if (percent < 100) {
+            cart.setDiscount(percent);
+        } else {
+            System.out.println("Недопустимый размер скидки");
+        }
     }
 
     public void applyPromoCode(Map<String, PromoСode> promoCodes, String code) {
@@ -45,8 +53,8 @@ public class StoreService {
             System.out.println("Промокод не найден или уже использован");
             return;
         }
-        cart.setDiscount(promo.getAmountDiscount());
-        promo.setValid(false);
+        cart.setDiscount(promo.getDiscount());
+        promo.markAsUsed();
     }
 
     public void printCart() {

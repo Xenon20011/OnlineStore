@@ -6,6 +6,7 @@ import java.util.List;
 public class Cart {
     private final List<CartItem> items = new ArrayList<>();
     private double discountPercent = 0.0;
+    private PromoСode promoСode;
 
     public void addItem(Product product, int quantity) {
         for (CartItem item : items) {
@@ -26,8 +27,9 @@ public class Cart {
         return discountPercent;
     }
 
+
     public void setDiscount(double percent) {
         this.discountPercent = percent;
     }
-
 }
+
